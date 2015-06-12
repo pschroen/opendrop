@@ -155,6 +155,17 @@ if ($_SERVER['REQUEST_URI'] == '/') {
             color: #ccc;
             text-align: right;
         }
+        .github {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+
+        @media (max-width: 1023px) {
+            .github {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
@@ -182,5 +193,5 @@ if ($_SERVER['REQUEST_URI'] == '/') {
 <script src="assets/js/app.js"></script>
 <?php } ?>
 <div class="legal" draggable="false"><div><a href="https://twitter.com/OpenDrop" target="_blank">@OpenDrop</a></div><div>TM &amp; © UFO Technologies Ltd.</div><div><a href="http://blog.ufotechnologies.com/" target="_blank">Made with ❤ in Toronto, Canada</a></div></div>
-<a href="https://github.com/pschroen/opendrop" target="_blank" draggable="false" style="position: absolute; left: 0px; top: 0px;"><img src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
+<a class="github" href="https://github.com/pschroen/opendrop" target="_blank" draggable="false"><img src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
 </html>
