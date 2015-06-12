@@ -14,6 +14,13 @@ Based on Carson McDonald's [direct-browser-s3-upload-example](https://github.com
 * Test scripts
 
 
+## Resources
+
+* [The Wiki](https://github.com/pschroen/opendrop/wiki)
+* [Website](http://opendrop.io/)
+* [Twitter](https://twitter.com/OpenDrop)
+
+
 ## Copyright & License
 
 Copyright (c) 2015 Patrick Schroen - Released under the [MIT License](LICENSE).
