@@ -172,10 +172,10 @@ if ($_SERVER['REQUEST_URI'] == '/') {
 <div id="table">
     <div id="table-cell">
 <?php if (!empty($files)) { ?>
-        <img src="assets/images/alienkitty.png" style="width: 76px; height: 76px;" alt="OpenDrop">
+        <img src="assets/images/alienkitty.png" style="width: 100px; height: 100px;" alt="OpenDrop">
 <?php } else { ?>
         <input type="file" id="files" name="files[]" multiple>
-        <a href="#" id="opendrop"><img src="assets/images/alienkitty.png" style="width: 76px; height: 76px;" alt="OpenDrop"></a>
+        <a href="#" id="opendrop"><img src="assets/images/alienkitty.png" style="width: 100px; height: 100px;" alt="OpenDrop"></a>
 <?php } ?>
         <h2 class="percent"></h2>
         <div id="status">
@@ -184,6 +184,7 @@ if ($_SERVER['REQUEST_URI'] == '/') {
             <h3><a href="<?php echo $S3_BUCKET.$_SERVER['REQUEST_URI'].'/'.$file->name; ?>" target="_blank"><?php echo $file->name; ?> (<?php echo format_filesize($file->size, 1); ?>)</a></h3>
 <?php } ?>
 <?php } else { ?>
+            <h3>24hr drop</h3>
 <?php } ?>
         </div>
     </div>
