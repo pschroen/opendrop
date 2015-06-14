@@ -18,6 +18,8 @@ while read -r line; do
         fi
     fi
 done <<< "$list"
-while read -r line; do
-    aws s3 rm s3://$bucket/$line --recursive
-done <<< "$clean"
+if [[ $clean != "" ]]; then
+    while read -r line; do
+        aws s3 rm s3://$bucket/$line --recursive
+    done <<< "$clean"
+fi
