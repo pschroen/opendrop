@@ -228,8 +228,13 @@ if ($_SERVER['REQUEST_URI'] == '/') {
         }
 
         .fadeout {
+            -webkit-animation: fadeout 1s;
             animation: fadeout 1s;
             opacity: 0;
+        }
+        @-webkit-keyframes fadeout {
+            0%   { opacity: 1; }
+            100% { opacity: 0; }
         }
         @keyframes fadeout {
             0%   { opacity: 1; }
@@ -237,8 +242,13 @@ if ($_SERVER['REQUEST_URI'] == '/') {
         }
 
         .fadein {
+            -webkit-animation: fadein 1s;
             animation: fadein 1s;
             opacity: 1;
+        }
+        @-webkit-keyframes fadein {
+            0%   { opacity: 0; }
+            100% { opacity: 1; }
         }
         @keyframes fadein {
             0%   { opacity: 0; }
