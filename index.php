@@ -10,6 +10,7 @@
 $S3_BUCKET = 'http://s3.amazonaws.com/opendrop';
 
 $files = array();
+$media = '';
 if ($_SERVER['REQUEST_URI'] == '/') {
     function random_drop() {
         $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_';
@@ -104,19 +105,20 @@ if ($_SERVER['REQUEST_URI'] == '/') {
             overflow: hidden;
         }
         body {
-            background-color: #111;
+            position: relative;
             margin: 0;
+            background-color: #111;
             font-family: 'Open Sans', sans-serif;
             font-size: 13px;
             line-height: 18px;
-            color: #f8f8f0;
-            position: relative;
+            color: white;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
             -webkit-user-select: none;
             -webkit-font-smoothing: antialiased;
             text-rendering: optimizelegibility;
         }
         a {
-            color: #ccc;
+            color: white;
             text-decoration: none;
         }
         h1 {
@@ -134,16 +136,76 @@ if ($_SERVER['REQUEST_URI'] == '/') {
         input {
             display: none;
         }
-        #table {
+        .table {
             position: absolute;
             display: table;
             width: 100%;
             height: 100%;
         }
-        #table-cell {
+        .table-cell {
             display: table-cell;
             vertical-align: middle;
             text-align: center;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+        }
+        .background video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -100;
+            -webkit-transform: translateX(-50%) translateY(-50%);
+            transform: translateX(-50%) translateY(-50%);
+            /*background: url() no-repeat;*/
+            background-size: cover;
+            -webkit-user-select: none;
+        }
+        .controls {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            font-family: sans-serif;
+            font-size: 12px;
+            line-height: 16px;
+            color: white;
+            text-align: left;
+            -webkit-user-select: none;
+            opacity: 0;
+        }
+        .controls code {
+            font-weight: bold;
+            -webkit-user-select: none;
+            cursor: default;
+        }
+        .controls span {
+            height: 16px;
+            margin-left: 10px;
+            padding: 0 5px;
+            background-color: white;
+            border-radius: 3px;
+            color: #222;
+            text-shadow: none;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+            white-space: nowrap;
+            -webkit-user-select: none;
+            cursor: default;
+        }
+        .controls.fadein code {
+            -webkit-user-select: text;
+            cursor: auto;
+        }
+        .controls.fadein span {
+            cursor: pointer;
         }
         .legal {
             position: absolute;
@@ -152,13 +214,35 @@ if ($_SERVER['REQUEST_URI'] == '/') {
             font-family: sans-serif;
             font-size: 12px;
             line-height: 16px;
-            color: #ccc;
+            color: white;
             text-align: right;
         }
         .github {
             position: absolute;
             left: 0px;
             top: 0px;
+        }
+        .media.canplay::after {
+            content: "►";
+            padding-left: 10px;
+        }
+
+        .fadeout {
+            animation: fadeout 1s;
+            opacity: 0;
+        }
+        @keyframes fadeout {
+            0%   { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .fadein {
+            animation: fadein 1s;
+            opacity: 1;
+        }
+        @keyframes fadein {
+            0%   { opacity: 0; }
+            100% { opacity: 1; }
         }
 
         @media (max-width: 1023px) {
@@ -169,30 +253,42 @@ if ($_SERVER['REQUEST_URI'] == '/') {
     </style>
 </head>
 <body>
-<div id="table">
-    <div id="table-cell">
+    <div class="background"></div>
+    <div class="container fadein">
+        <div class="table">
+            <div class="table-cell">
 <?php if (!empty($files)) { ?>
-        <img src="assets/images/alienkitty.png" style="width: 100px; height: 100px;" alt="OpenDrop">
+                <img src="assets/images/alienkitty.png" style="width: 100px; height: 100px;" alt="OpenDrop">
 <?php } else { ?>
-        <input type="file" id="files" name="files[]" multiple>
-        <a href="#" id="opendrop"><img src="assets/images/alienkitty.png" style="width: 100px; height: 100px;" alt="OpenDrop"></a>
+                <input type="file" id="files" name="files[]" multiple>
+                <a href="#" id="opendrop"><img src="assets/images/alienkitty.png" style="width: 100px; height: 100px;" alt="OpenDrop"></a>
 <?php } ?>
-        <h2 class="percent"></h2>
-        <div id="status">
+                <h2 class="percent"></h2>
+                <div id="status">
 <?php if (!empty($files)) { ?>
-<?php foreach ($files as $file) { ?>
-            <h3><a href="<?php echo $S3_BUCKET.$_SERVER['REQUEST_URI'].'/'.$file->name; ?>" target="_blank"><?php echo $file->name; ?> (<?php echo format_filesize($file->size, 1); ?>)</a></h3>
+<?php foreach ($files as $file) {
+if (strstr($file->type, 'audio') || strstr($file->type, 'video')) {
+    $media = 'media';
+}
+?>
+                    <h3><a href="<?php echo $S3_BUCKET.$_SERVER['REQUEST_URI'].'/'.$file->name; ?>"<?php if (!empty($media)) { ?> class="<?php echo $media; ?>"<?php } ?> target="_blank" data-name="<?php echo $file->name; ?>" data-type="<?php echo $file->type; ?>" data-size="<?php echo $file->size; ?>"><?php echo $file->name; ?> (<?php echo format_filesize($file->size, 1); ?>)</a></h3>
 <?php } ?>
 <?php } else { ?>
-            <h3>24hr drop</h3>
+                    <h3>24hr drop</h3>
 <?php } ?>
+                </div>
+            </div>
         </div>
+        <div class="legal" draggable="false"><div><a href="https://twitter.com/OpenDrop" target="_blank">@OpenDrop</a></div><div>TM &amp; © UFO Technologies Ltd.</div><div><a href="http://blog.ufotechnologies.com/" target="_blank">Made with ❤ in Toronto, Canada</a></div></div>
+        <a class="github" href="https://github.com/pschroen/opendrop" target="_blank" draggable="false"><img src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
     </div>
-</div>
-</body>
-<?php if (empty($files)) { ?>
-<script src="assets/js/app.js"></script>
+<?php if (!empty($media)) { ?>
+    <div class="controls"><code>00:00:00</code><span>esc</span><span>space</span><span>←</span><span>→</span></div>
 <?php } ?>
-<div class="legal" draggable="false"><div><a href="https://twitter.com/OpenDrop" target="_blank">@OpenDrop</a></div><div>TM &amp; © UFO Technologies Ltd.</div><div><a href="http://blog.ufotechnologies.com/" target="_blank">Made with ❤ in Toronto, Canada</a></div></div>
-<a class="github" href="https://github.com/pschroen/opendrop" target="_blank" draggable="false"><img src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
+<?php if (empty($files)) { ?>
+    <script src="assets/js/app.js"></script>
+<?php } elseif (!empty($media)) { ?>
+    <script src="assets/js/media.js"></script>
+<?php } ?>
+</body>
 </html>
