@@ -1,5 +1,5 @@
 /**
- * OpenDrop.
+ * Opendrop.
  *
  * @author   Patrick Schroen / https://github.com/pschroen
  * @license  MIT Licensed

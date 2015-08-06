@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenDrop.
+ * Opendrop.
  *
  * @author   Patrick Schroen / https://github.com/pschroen
  * @license  MIT Licensed
@@ -63,15 +63,15 @@ if ($_SERVER['REQUEST_URI'] == '/') {
 <html>
 <head>
     <meta charset="utf-8">
-    <title>OpenDrop</title>
-    <meta name="title"                                  content="OpenDrop">
-    <meta name="description"                            content="Share files instantly">
+    <title>Opendrop - Share files instantly</title>
+    <meta name="title"                                  content="Opendrop - Share files instantly">
+    <meta name="description"                            content="Removes uploads after 7 days and includes a built-in HTML5 media player. Perfect for sharing audio and video edits.">
     <meta name="keywords"                               content="file, sharing, drag, drop, box">
     <meta name="author"                                 content="Patrick Schroen">
     <meta name="viewport"                               content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta name="apple-mobile-web-app-title"             content="OpenDrop">
+    <meta name="apple-mobile-web-app-title"             content="Opendrop - Share files instantly">
     <meta name="apple-mobile-web-app-status-bar-style"  content="black-translucent">
-    <meta property="description"                        content="Share files instantly">
+    <meta property="description"                        content="Removes uploads after 7 days and includes a built-in HTML5 media player. Perfect for sharing audio and video edits.">
     <meta property="copyright"                          content="Copyright © UFO Technologies Ltd. All rights reserved.">
     <link rel="shortcut icon"                           href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon"                        href="assets/images/apple-touch-icon.png">
@@ -83,9 +83,9 @@ if ($_SERVER['REQUEST_URI'] == '/') {
     <link rel="apple-touch-icon" sizes="144x144"        href="assets/images/apple-touch-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152"        href="assets/images/apple-touch-icon-152x152.png">
     <meta property="og:type"                            content="Website">
-    <meta property="og:site_name"                       content="OpenDrop">
-    <meta property="og:title"                           content="OpenDrop">
-    <meta property="og:description"                     content="Share files instantly">
+    <meta property="og:site_name"                       content="Opendrop - Share files instantly">
+    <meta property="og:title"                           content="Opendrop - Share files instantly">
+    <meta property="og:description"                     content="Removes uploads after 7 days and includes a built-in HTML5 media player. Perfect for sharing audio and video edits.">
     <meta property="og:url"                             content="http://opendrop.io/">
     <meta property="og:image"                           content="assets/images/alienkitty.png">
     <meta property="og:image:type"                      content="image/png">
@@ -268,10 +268,10 @@ if ($_SERVER['REQUEST_URI'] == '/') {
         <div class="table">
             <div class="table-cell">
 <?php if (!empty($files)) { ?>
-                <img src="assets/images/alienkitty.png" style="width: 100px; height: 100px;" alt="OpenDrop">
+                <img src="assets/images/alienkitty.png" style="width: 100px; height: 100px;" alt="Opendrop - Share files instantly">
 <?php } else { ?>
                 <input type="file" id="files" name="files[]" multiple>
-                <a href="#" id="opendrop"><img src="assets/images/alienkitty.png" style="width: 100px; height: 100px;" alt="OpenDrop"></a>
+                <a href="#" id="opendrop"><img src="assets/images/alienkitty.png" style="width: 100px; height: 100px;" alt="Opendrop - Share files instantly"></a>
 <?php } ?>
                 <h2 class="percent"></h2>
                 <div id="status">
@@ -284,12 +284,12 @@ if (strstr($file->type, 'audio') || strstr($file->type, 'video')) {
                     <h3><a href="<?php echo $S3_BUCKET.$_SERVER['REQUEST_URI'].'/'.$file->name; ?>"<?php if (!empty($media)) { ?> class="<?php echo $media; ?>"<?php } ?> target="_blank" data-name="<?php echo $file->name; ?>" data-type="<?php echo $file->type; ?>" data-size="<?php echo $file->size; ?>"><?php echo $file->name; ?> (<?php echo format_filesize($file->size, 1); ?>)</a></h3>
 <?php } ?>
 <?php } else { ?>
-                    <h3>24hr drop</h3>
+                    <h3>7 day drop</h3>
 <?php } ?>
                 </div>
             </div>
         </div>
-        <div class="legal" draggable="false"><div><a href="https://twitter.com/OpenDrop" target="_blank">@OpenDrop</a></div><div>TM &amp; © UFO Technologies Ltd.</div><div><a href="http://blog.ufotechnologies.com/" target="_blank">Made with ❤ in Toronto, Canada</a></div></div>
+        <div class="legal" draggable="false"><div><a href="https://twitter.com/opendrop" target="_blank">@opendrop</a></div><div>TM &amp; © UFO Technologies Ltd.</div><div><a href="http://blog.ufotechnologies.com/" target="_blank">Made with ❤ in Toronto, Canada</a></div></div>
         <a class="github" href="https://github.com/pschroen/opendrop" target="_blank" draggable="false"><img src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
     </div>
 <?php if (!empty($media)) { ?>

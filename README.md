@@ -1,6 +1,8 @@
-# OpenDrop
+# Opendrop - Share files instantly
 
-Based on Carson McDonald's [direct-browser-s3-upload-example](https://github.com/carsonmcdonald/direct-browser-s3-upload-example), OpenDrop is a simple file-sharing [PHP](http://php.net/) website that uses any [Amazon S3](http://aws.amazon.com/s3/) bucket for storage.
+Based on Carson McDonald's [direct-browser-s3-upload-example](https://github.com/carsonmcdonald/direct-browser-s3-upload-example), Opendrop is a simple file-sharing [PHP](http://php.net/) website that uses any [Amazon S3](http://aws.amazon.com/s3/) bucket for storage.
+
+Includes a shell script to remove uploads after 7 days and a built-in HTML5 media player. Perfect for sharing audio and video edits.
 
 
 ## CORS Configuration
@@ -34,7 +36,7 @@ Based on Carson McDonald's [direct-browser-s3-upload-example](https://github.com
 
 * [The Wiki](https://github.com/pschroen/opendrop/wiki)
 * [Website](http://opendrop.io/)
-* [Twitter](https://twitter.com/OpenDrop)
+* [Twitter](https://twitter.com/opendrop)
 
 
 ## Copyright & License

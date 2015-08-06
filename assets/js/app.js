@@ -1,5 +1,5 @@
 /**
- * OpenDrop.
+ * Opendrop.
  *
  * Based on Carson McDonald's direct-browser-s3-upload-example.
  * https://github.com/carsonmcdonald/direct-browser-s3-upload-example
@@ -50,11 +50,11 @@ function handleFileSelect(evt) {
     uploadFile(i, file);
 }
 
-function handleOpenDropClick(evt) {
+function handleClick(evt) {
     "use strict";
     evt.stopPropagation();
     evt.preventDefault();
-    setProgress(0, "Waiting for upload...");
+    setProgress(0, "Waiting for upload.");
     document.getElementById('files').click();
 }
 
@@ -155,6 +155,6 @@ function setProgress(percent, statusLabel) {
 }
 
 document.getElementById('files').addEventListener('change', handleFileSelect, false);
-document.getElementById('opendrop').addEventListener('click', handleOpenDropClick, false);
+document.getElementById('opendrop').addEventListener('click', handleClick, false);
 document.body.addEventListener('dragover', handleDragOver, false);
 document.body.addEventListener('drop', handleDrop, false);

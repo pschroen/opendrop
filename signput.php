@@ -1,6 +1,6 @@
 <?php
 /**
- * OpenDrop.
+ * Opendrop.
  *
  * Based on Carson McDonald's direct-browser-s3-upload-example.
  * https://github.com/carsonmcdonald/direct-browser-s3-upload-example
