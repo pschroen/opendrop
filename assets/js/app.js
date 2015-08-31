@@ -54,7 +54,6 @@ function handleClick(evt) {
     "use strict";
     evt.stopPropagation();
     evt.preventDefault();
-    setProgress(0, "Waiting for upload.");
     document.getElementById('files').click();
 }
 
