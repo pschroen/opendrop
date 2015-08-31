@@ -35,10 +35,7 @@ var background = document.getElementsByClassName('background')[0],
 var mediaElements = document.getElementsByClassName('media');
 for (var i = 0; i < mediaElements.length; i++) {
     var element = mediaElements[i],
-        href = element.getAttribute('href'),
-        name = element.getAttribute('data-name'),
         type = element.getAttribute('data-type'),
-        size = element.getAttribute('data-size'),
         media = null;
 
     if (/audio/.test(type)) {
@@ -65,13 +62,19 @@ for (var i = 0; i < mediaElements.length; i++) {
     if (media && media.canPlayType(type)) {
         element.onclick = function () {
             "use strict";
-            container.className = 'container fadeout';
-            media.src = href;
-            media.type = type;
-            media.play();
-            nowplaying = media;
-            background.className = 'background fadein';
-            showControls();
+            var href = this.getAttribute('href'),
+                type = this.getAttribute('data-type'),
+                media = /audio/.test(type) ? audio : /video/.test(type) ? video : null;
+
+            if (media) {
+                container.className = 'container fadeout';
+                media.src = href;
+                media.type = type;
+                media.play();
+                nowplaying = media;
+                background.className = 'background fadein';
+                showControls();
+            }
             return false;
         };
         element.className = 'media canplay';
