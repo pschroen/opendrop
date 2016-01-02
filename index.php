@@ -293,7 +293,7 @@ if (strstr($file->type, 'audio') || strstr($file->type, 'video')) {
         <a class="github" href="https://github.com/pschroen/opendrop" target="_blank" draggable="false"><img src="https://s3.amazonaws.com/github/ribbons/forkme_left_white_ffffff.png" alt="Fork me on GitHub"></a>
     </div>
 <?php if (!empty($media)) { ?>
-    <div class="controls"><code>00:00:00</code><span>esc</span><span>space</span><span>←</span><span>→</span></div>
+    <div class="controls"><code>Loading </code><span>esc</span><span>space</span><span>←</span><span>→</span></div>
 <?php } ?>
 <?php if (empty($files)) { ?>
     <script src="assets/js/app.js"></script>
