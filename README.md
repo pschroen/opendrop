@@ -38,9 +38,13 @@ Instead of using the included shell script it's much simpler to remove uploads u
 * Test scripts
 
 
+## Changelog
+
+* [Releases](https://github.com/pschroen/opendrop/releases)
+
+
 ## Resources
 
-* [The Wiki](https://github.com/pschroen/opendrop/wiki)
 * [Website](http://opendrop.io/)
 * [Twitter](https://twitter.com/opendrop)
 
