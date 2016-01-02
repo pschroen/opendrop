@@ -21,6 +21,12 @@ Includes a shell script to remove uploads after 7 days and a built-in HTML5 medi
 </CORSConfiguration>
 ```
 
+
+## Lifecycle Rules
+
+Instead of using the included shell script it's much simpler to remove uploads using Amazon's Lifecycle rules, under the `Lifecycle` section of your Bucket.
+
+
 ## Roadmap
 
 ##### v0.1.x:
